@@ -3,7 +3,7 @@
 var req = new XMLHttpRequest(); 
 req.onload = reqListener; 
 req.open('get','https://moderation.cameo.com/api/user/636ecb1e1dc0232d0bb66c22/preferences/locale',true); 
-req.withCredentials = true;
+req.withCredentials = false;
 req.send();
 
 function reqListener() {
