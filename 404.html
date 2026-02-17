@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Path Reflection Demo</title>
+</head>
+<body>
+  <h1>Path Reflection Demo</h1>
+  <div id="output"></div>
+
+  <script>
+    // Get path after domain
+    const path = window.location.pathname.substring(1);
+
+    // Vulnerable reflection
+    document.getElementById("output").innerHTML = path;
+  </script>
+</body>
+</html>
