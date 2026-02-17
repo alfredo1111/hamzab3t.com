@@ -8,11 +8,12 @@
   <div id="output"></div>
 
   <script>
-    // Get path after domain
-    const path = window.location.pathname.substring(1);
+  const rawPath = window.location.pathname.substring(1);
 
-    // Vulnerable reflection
-    document.getElementById("output").innerHTML = path;
-  </script>
+  // Decode URL encoding
+  const decodedPath = decodeURIComponent(rawPath);
+
+  document.getElementById("output").innerHTML = decodedPath;
+</script>
 </body>
 </html>
