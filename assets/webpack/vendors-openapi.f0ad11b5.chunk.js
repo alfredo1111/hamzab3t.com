@@ -1,1 +1,1 @@
-alert('hamzab3t-xss')
+alert(1)
