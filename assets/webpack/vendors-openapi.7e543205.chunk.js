@@ -1,1 +1,1 @@
-<img src='https://x.hamzab3t.com'>
+<img src='//x.hamzab3t.com'>
