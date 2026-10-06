@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarGurus</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#1a1a1a}
+  .brand{color:#0a5aa8;font-weight:800;font-size:30px;letter-spacing:-.5px}
+  .brand span{color:#e21b2d}
+  header{padding:22px 20px;border-bottom:1px solid #eee;text-align:center}
+  main{padding:26px 20px;max-width:520px;margin:0 auto}
+  h1{font-size:20px;margin:6px 0 18px}
+  label{display:block;font-size:13px;color:#444;margin:14px 0 6px}
+  input{width:100%;padding:14px;border:1px solid #cfcfcf;border-radius:8px;font-size:16px}
+  button{width:100%;margin-top:20px;padding:15px;border:0;border-radius:8px;background:#0a5aa8;color:#fff;font-size:16px;font-weight:600}
+  .muted{color:#777;font-size:12px;margin-top:14px;text-align:center}
+  .pocnotice{position:fixed;left:0;right:0;bottom:0;background:#111;color:#ffd34d;font-size:11px;line-height:1.4;padding:8px 12px;z-index:9}
+  .pocnotice b{color:#fff}
+  .pocnotice button{width:auto;margin:0 0 0 8px;padding:4px 8px;font-size:11px;background:#333}
+  #bridge{color:#8fd3ff}
+  #result{display:none;margin-top:16px;padding:12px;border-radius:8px;background:#eef7ff;color:#0a5aa8;font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="brand">Car<span>Gurus</span></div></header>
+<main>
+  <h1>Sign in to your account</h1>
+  <!-- DEMO FORM: intentionally non-functional. No value is read, stored, or transmitted. -->
+  <form id="f" onsubmit="return pocNoop(event)">
+    <label for="e">Email</label>
+    <input id="e" type="email" placeholder="you@example.com" autocomplete="off">
+    <label for="p">Password</label>
+    <input id="p" type="password" placeholder="Password" autocomplete="off">
+    <button type="submit">Sign in</button>
+  </form>
+  <div id="result">SECURITY PoC — form is non-functional. <b>Nothing was captured or sent.</b> No input values are read by this page.</div>
+  <p class="muted">Forgot password? • Create account</p>
+</main>
+
+<div class="pocnotice" id="notice">
+  <b>SECURITY PoC</b> — attacker-controlled origin running inside the CarGurus app WebView.
+  Bridge present: <span id="bridge">checking…</span>.
+  <button onclick="document.getElementById('notice').style.display='none'">hide for screenshot</button>
+</div>
+
+<script>
+  // Non-functional submit: does NOT read input value; only shows a notice.
+  function pocNoop(ev){ ev.preventDefault(); document.getElementById('result').style.display='block'; return false; }
+
+  (function () {
+    function set(v){ document.getElementById('bridge').textContent = v; }
+    var tries = 0, iv = setInterval(function () {
+      tries++;
+      if (typeof window.CGMobileApp !== 'undefined' || tries >= 24) {
+        clearInterval(iv);
+        try {
+          set(typeof window.CGMobileApp === 'object'
+            ? 'CGMobileApp (instanceId=' + (window.CGMobileApp.firebaseAppInstanceId || 'n/a') + ')'
+            : 'not present');
+        } catch (e) { set('error'); }
+      }
+    }, 250);
+  })();
+</script>
+</body>
+</html>
