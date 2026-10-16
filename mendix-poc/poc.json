@@ -1,0 +1,10 @@
+{
+  "get": {
+    "operationId": "SSRF_POC_OPERATION_ID",
+    "summary": "SSRF_POC_SUMMARY_REFLECTED",
+    "description": "SSRF_POC_DESCRIPTION_REFLECTED",
+    "responses": {
+      "200": { "description": "SSRF_POC_RESPONSE_DESCRIPTION_REFLECTED" }
+    }
+  }
+}
